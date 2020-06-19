@@ -1,14 +1,31 @@
+html {
+    font-size: 14px;
+    font-family: serif;
+    background-color: #FAFAFA;
+    color: #222;
+}
+
 /* Provide sufficient contrast against white background */
+
 a {
-  color: #0366d6;
+    color: #0366d6;
 }
 
 code {
-  color: #E01A76;
+    color: #E01A76;
+}
+
+label {
+  margin-right: 5px;
 }
 
 .btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+.content {
+    width: 768px;
+    margin: 16px auto;
 }
