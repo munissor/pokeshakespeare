@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
+import './Spinner.css';
 
-// from: https://loading.io/css/
+// https://github.com/athanstan/css-pokeball
 export class Spinner extends Component {
   
   render () {
     return (
-        <div class="lds-dual-ring"></div>
+        <div className="poke_box">
+            <div className="pokeball">
+                <div className="pokeball__button"></div>
+            </div>   
+        </div>
     );
   }
 }

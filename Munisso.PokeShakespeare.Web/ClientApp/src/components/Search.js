@@ -25,16 +25,17 @@ export class Search extends Component {
     this.setState(() => ({ query: value }));
   }
   
-  async handleSearch() {
+  async handleSearch(event) {
+    event.preventDefault();
     if(this.state.query) {
-      this.setState({ loading: true });
+      this.setState({ loading: true, pokemon: null });
       const response = await fetch(`/pokemon/${this.state.query}`);
       let error = null;
       let pokemon = null;
-      if ( response.status == 200 ) {
+      if ( response.status === 200 ) {
         pokemon = await response.json();
       }
-      else if( response.status == 404 ) {
+      else if( response.status === 404 ) {
         error = "That pokemon doesn't exist!";
       }
       else {
@@ -56,7 +57,20 @@ export class Search extends Component {
   renderPokemon() {
     if(this.state.pokemon ) {
       return (
-        <Pokemon pokemon={this.state.pokemon} />
+        <div>
+          <Pokemon pokemon={this.state.pokemon} />
+          <button onClick={() => this.props.addFavourite(this.state.pokemon)}>
+                      Add to favourites
+          </button>
+        </div>
+      )
+    }
+  }
+
+  renderError() {
+    if(this.state.error ) {
+      return (
+        <div className="error">{this.state.error}</div>
       )
     }
   }
@@ -64,14 +78,17 @@ export class Search extends Component {
   render () {
     return (
       <Card>
-        <label htmlFor="query">Pokemon</label>
-        <input name="query" 
-          type="text" 
-          value={this.state.query}
-          onChange={this.handleQueryChange}></input>
-        <button htmlFor="submit" onClick={this.handleSearch}>Search</button>
+        <form onSubmit={this.handleSearch}>
+          <label htmlFor="query">Pokemon</label>
+          <input name="query" 
+            type="text" 
+            value={this.state.query}
+            onChange={this.handleQueryChange}></input>
+          <input type="submit" value="Search" />
+        </form>
         {this.renderSpinner()}
         {this.renderPokemon()}
+        {this.renderError()}
       </Card>
     );
   }
