@@ -28,7 +28,7 @@ export class Search extends Component {
   async handleSearch(event) {
     event.preventDefault();
     if(this.state.query) {
-      this.setState({ loading: true, pokemon: null });
+      this.setState({ loading: true, pokemon: null, error: null });
       const response = await fetch(`/pokemon/${this.state.query}`);
       let error = null;
       let pokemon = null;
