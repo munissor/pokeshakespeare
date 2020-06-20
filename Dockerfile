@@ -16,4 +16,6 @@ WORKDIR /opt/pokeshakespeare
 COPY --from=buildbackend  /opt/pokeshakespeare/Munisso.PokeShakespeare.Web/bin/Release/netcoreapp3.1/ .
 COPY --from=buildfrontend  /opt/pokeshakespeare/build ./ClientApp/build
 
+ENV ASPNETCORE_ENVIRONMENT=Docker
+
 ENTRYPOINT [ "dotnet", "Munisso.PokeShakespeare.Web.dll" ]
