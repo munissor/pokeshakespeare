@@ -25,7 +25,7 @@ namespace Munisso.PokeShakespeare.Repositories
         public void Setup()
         {
             this.mockHttp = new MockHttpMessageHandler();
-            this.repository = new ShakespeareTranslatorRepository(mockHttp);
+            this.repository = new ShakespeareTranslatorRepository(null, mockHttp);
         }
 
         [Test]
@@ -33,7 +33,7 @@ namespace Munisso.PokeShakespeare.Repositories
         {
             Assert.Throws<ArgumentNullException>(() =>
             {
-                new ShakespeareTranslatorRepository(null);
+                new ShakespeareTranslatorRepository(null, null);
             });
         }
 
@@ -45,6 +45,16 @@ namespace Munisso.PokeShakespeare.Repositories
             var translation = await this.repository.Translate("text");
             Assert.AreEqual("text", translation.Original);
             Assert.AreEqual("translated", translation.Translated);
+        }
+
+        [Test]
+        public async Task Test_Translate_WithKey()
+        {
+            var key = "testkey";
+            this.repository = new ShakespeareTranslatorRepository(key, mockHttp);
+            this.mockHttp.Expect(ShakespeareTranslatorRepository.API_URL).WithHeaders("X-Funtranslations-Api-Secret", key).Respond(HttpStatusCode.OK, "application/json", RESPONSE_VALID);
+            var translation = await this.repository.Translate("text");
+            this.mockHttp.VerifyNoOutstandingExpectation();
         }
 
         [Test]
