@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { SiteHeader } from './SiteHeader';
 
-export class Layout extends Component {
+class Layout extends Component {
   static displayName = Layout.name;
 
   render () {
@@ -15,3 +16,16 @@ export class Layout extends Component {
     );
   }
 }
+
+Layout.propTypes = {
+  children: PropTypes.oneOfType([
+      PropTypes.arrayOf(PropTypes.node),
+      PropTypes.element
+  ]).isRequired
+};
+
+Layout.defaultProps = {
+  children: null
+};
+
+export { Layout };

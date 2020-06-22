@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './Card.css';
 
-export class Card extends Component {
+class Card extends Component {
 
     render() {
         return (
@@ -11,3 +12,16 @@ export class Card extends Component {
         );
     }
 }
+
+Card.propTypes = {
+    children: PropTypes.oneOfType([
+        PropTypes.arrayOf(PropTypes.node),
+        PropTypes.element
+    ]).isRequired
+};
+
+Card.defaultProps = {
+    children: null
+};
+
+export { Card };

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-export class Pokemon extends Component {
+class Pokemon extends Component {
   
   render () {
     return (
@@ -11,3 +12,16 @@ export class Pokemon extends Component {
     );
   }
 }
+
+Pokemon.propTypes = {
+  pokemon: PropTypes.shape({
+    pokemon: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired
+  }).isRequired,
+};
+
+Pokemon.defaultProps = {
+  pokemon: {},
+};
+
+export { Pokemon };

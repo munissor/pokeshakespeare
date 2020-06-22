@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { Pokemon } from './Pokemon';
+import PropTypes from 'prop-types';
 import { Card } from './Card';
 
 
-export default class PokemonList extends Component {
+class PokemonList extends Component {
   
   render () {
-    return this.props.pokemons.map(p => {
+    return (this.props.pokemons || []).map(p => {
         return (
             <Card key={p.pokemon}>
                 <Pokemon pokemon={p} />
@@ -18,3 +19,17 @@ export default class PokemonList extends Component {
     })
   }
 }
+
+PokemonList.propTypes = {
+  pokemons: PropTypes.arrayOf(PropTypes.shape({
+    pokemon: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired
+  })).isRequired,
+  removeFavourite: PropTypes.func.isRequired,
+};
+
+PokemonList.defaultProps = {
+  pokemons: null,
+};
+
+export default PokemonList;

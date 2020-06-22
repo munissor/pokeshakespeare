@@ -18,12 +18,15 @@ afterEach(() => {
   container = null;
 });
 
-it('wraps the content into a card node', async () => {
-  act(() => {
-    render(
-      <Card>
-        <div className="content" />
-      </Card>, container);
-    });
-  expect(container.querySelector(".card .content")).not.toBeNull();
+describe('Card', () => {
+  it('wraps the content into a card node', async () => {
+    act(() => {
+      render(
+        <Card>
+          <div className="content" />
+        </Card>, container);
+      });
+    expect(container.querySelector(".card .content")).not.toBeNull();
+  });
 });
+

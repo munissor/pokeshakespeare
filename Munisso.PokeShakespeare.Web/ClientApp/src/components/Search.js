@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {Card} from './Card';
 import {Spinner} from './Spinner';
 import {Pokemon} from './Pokemon';
 
-export class Search extends Component {
+class Search extends Component {
   static displayName = Search.name;
 
   constructor() {
@@ -59,8 +60,8 @@ export class Search extends Component {
       return (
         <div>
           <Pokemon pokemon={this.state.pokemon} />
-          <button onClick={() => this.props.addFavourite(this.state.pokemon)}>
-                      Add to favourites
+          <button className="addFav" onClick={() => this.props.addFavourite(this.state.pokemon)}>
+            Add to favourites
           </button>
         </div>
       )
@@ -93,3 +94,11 @@ export class Search extends Component {
     );
   }
 }
+
+
+Search.propTypes = {
+  addFavourite: PropTypes.func.isRequired,
+};
+
+
+export { Search };

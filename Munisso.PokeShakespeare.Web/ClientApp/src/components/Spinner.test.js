@@ -1,13 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { render, unmountComponentAtNode } from "react-dom";
-import { act } from "react-dom/test-utils";
+import { render, unmountComponentAtNode } from 'react-dom';
+import { act } from 'react-dom/test-utils';
 import { Spinner } from './Spinner';
 
 let container;
 beforeEach(() => {
   // setup a DOM element as a render target
-  container = document.createElement("div");
+  container = document.createElement('div');
   document.body.appendChild(container);
 });
 
@@ -24,5 +23,5 @@ it('renders without crashing', async () => {
       <Spinner>
       </Spinner>, container);
     });
-  expect(container.querySelector(".pokeball")).not.toBeNull();
+  expect(container.querySelector('.pokeball')).not.toBeNull();
 });
