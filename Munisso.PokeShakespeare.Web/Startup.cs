@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,7 +27,17 @@ namespace Munisso.PokeShakespeare
 
             // repositories
             services.AddTransient<IPokeapiRepository, PokeapiRepository>();
-            services.AddTransient<IShakespeareTranslatorRepository, ShakespeareTranslatorRepository>();
+            if(!string.IsNullOrEmpty("USE_DUMMY_TRANSLATIONS") )
+            {
+                services.AddTransient<IShakespeareTranslatorRepository, DummyShakespeareTranslatorRepository>();
+            }
+            else 
+            {
+                services.AddTransient<IShakespeareTranslatorRepository>((IServiceProvider sp) =>
+                {
+                    return new ShakespeareTranslatorRepository(Environment.GetEnvironmentVariable("FUNTRANSLATIONS_API_KEY"));
+                });
+            }
             services.AddSingleton<ICache, InMemoryCache>();
             // services
             services.AddTransient<IPokeShakespeareService, PokeShakespeareService>();

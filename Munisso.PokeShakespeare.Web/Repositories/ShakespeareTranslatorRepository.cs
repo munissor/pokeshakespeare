@@ -13,23 +13,33 @@ namespace Munisso.PokeShakespeare.Repositories
     {
         public const string API_URL = "https://api.funtranslations.com/translate/shakespeare.json";
 
+        private string ApiKey;
+
         public ShakespeareTranslatorRepository()
-            : base(new HttpClientHandler())
+            : this(null)
         {
         }
 
-        public ShakespeareTranslatorRepository(HttpMessageHandler messageHandler)
+        public ShakespeareTranslatorRepository(string apiKey)
+            : this(apiKey, new HttpClientHandler())
+        {
+        }
+
+        public ShakespeareTranslatorRepository(string apiKey, HttpMessageHandler messageHandler)
             : base(messageHandler)
         {
+            ApiKey = apiKey;
         }
-
 
         public async Task<Translation> Translate(string text)
         {
             using (var httpClient = base.GetClient())
             {
-                // TODO: url=escape text? see what happens if text contains = or ?
-                // TODO: allow to specify a API key in the config.
+                if (!string.IsNullOrEmpty(ApiKey))
+                {
+                    httpClient.DefaultRequestHeaders.Add("X-Funtranslations-Api-Secret", this.ApiKey);
+                }
+
                 var req = new StringContent($"text={text}", Encoding.UTF8, "application/x-www-form-urlencoded");
                 var response = await httpClient.PostAsync(API_URL, req);
 
