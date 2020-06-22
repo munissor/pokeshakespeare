@@ -67,7 +67,7 @@ namespace Munisso.PokeShakespeare.Services
             this.pokeapiRepositoryMock.Verify(m => m.GetDescription(pokemon), Times.Once);
             this.shakespeareTranslatorRepositoryMock.Verify(m => m.Translate(description), Times.Once);
 
-            Assert.AreEqual(result.Pokemon, pokemon);
+            Assert.AreEqual(result.Name, pokemon);
             Assert.AreEqual(result.Description, shakespeare_description);
         }
 
@@ -86,7 +86,7 @@ namespace Munisso.PokeShakespeare.Services
             this.pokeapiRepositoryMock.Verify(m => m.GetDescription(pokemon), Times.Never);
             this.shakespeareTranslatorRepositoryMock.Verify(m => m.Translate(It.IsAny<string>()), Times.Never);
 
-            Assert.AreEqual(result.Pokemon, pokemon);
+            Assert.AreEqual(result.Name, pokemon);
             Assert.AreEqual(result.Description, shakespeare_description);
         }
 

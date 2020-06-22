@@ -20,7 +20,7 @@ afterEach(() => {
 describe('Pokemon', () => {
   it('renders the pokemon information', async () => {
     let data = {
-      pokemon: 'pikachu',
+      name: 'pikachu',
       description: 'pikachu description'
     };
 
@@ -31,7 +31,7 @@ describe('Pokemon', () => {
         , container);
       });
 
-    expect(container.querySelector('h2').textContent).toBe(data.pokemon);
+    expect(container.querySelector('h2').textContent).toBe(data.name);
     expect(container.querySelector('p').textContent).toBe(data.description);
   });
 

@@ -27,7 +27,8 @@ namespace Munisso.PokeShakespeare
 
             // repositories
             services.AddTransient<IPokeapiRepository, PokeapiRepository>();
-            if(!string.IsNullOrEmpty("USE_DUMMY_TRANSLATIONS") )
+            var useDummyTranslations = Environment.GetEnvironmentVariable("USE_DUMMY_TRANSLATIONS");
+            if(!string.IsNullOrEmpty(useDummyTranslations) )
             {
                 services.AddTransient<IShakespeareTranslatorRepository, DummyShakespeareTranslatorRepository>();
             }

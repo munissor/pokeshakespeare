@@ -23,8 +23,8 @@ test-e2e-frontend: build-docker
 	docker stop $(E2E_HOST) 2>/dev/null || true
 	docker network rm $(E2E_NETWORK) 2>/dev/null || true
 	docker network create --driver bridge $(E2E_NETWORK)
-	docker run --rm -d --dns $(DNS) -p 5000:80 --name $(E2E_HOST) --network=$(E2E_NETWORK) pokeshakespeare:latest
-	docker run --rm -u $(USER) --volume `pwd`:/tmp/app/ --volume `pwd`/tmp/cypress:/root/.cache/Cypress/ -w /tmp/app/ --network=$(E2E_NETWORK) cypress/base:12.18.0 ./scripts/test_e2e_frontend.sh
+	docker run --rm -d --dns $(DNS) -p 5000:80 --name $(E2E_HOST) --env USE_DUMMY_TRANSLATIONS=true --network=$(E2E_NETWORK) pokeshakespeare:latest
+	docker run --rm -u $(USER) --volume `pwd`:/tmp/app/ --volume `pwd`/tmp/cypress:/home/node/.cache/Cypress/ -w /tmp/app/ --network=$(E2E_NETWORK) cypress/base:12.18.0 ./scripts/test_e2e_frontend.sh
 	docker stop $(E2E_HOST)
 	docker network rm $(E2E_NETWORK)
 

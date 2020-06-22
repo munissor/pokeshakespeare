@@ -31,7 +31,7 @@ describe('Favourites reducer', () => {
   
         let fav = reducer([pokemon], {
           type: 'REMOVE_FAVOURITE',
-          pokemonName: pokemon.pokemon
+          pokemonName: pokemon.name
         });
   
         expect(fav).toEqual([]);

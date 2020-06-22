@@ -2,11 +2,11 @@ namespace Munisso.PokeShakespeare.Models
 {
     public class ShakespeareDescription
     {
-        public ShakespeareDescription(string pokemon, string description)
+        public ShakespeareDescription(string name, string description)
         {
-            if (string.IsNullOrEmpty(pokemon))
+            if (string.IsNullOrEmpty(name))
             {
-                throw new System.ArgumentException($"'{nameof(pokemon)}' cannot be null or empty", nameof(pokemon));
+                throw new System.ArgumentException($"'{nameof(name)}' cannot be null or empty", nameof(name));
             }
 
             if (string.IsNullOrEmpty(description))
@@ -14,10 +14,10 @@ namespace Munisso.PokeShakespeare.Models
                 throw new System.ArgumentException($"'{nameof(description)}' cannot be null or empty", nameof(description));
             }
 
-            this.Pokemon = pokemon;
+            this.Name = name;
             this.Description = description;
         }
-        public string Pokemon { get; private set; }
+        public string Name { get; private set; }
 
         public string Description { get; private set; }
     }

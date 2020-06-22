@@ -35,12 +35,12 @@ describe('Search', () => {
   });
 
   it('sends the correct query to the backend', async () => {
+    let pokemon = 'pikachu';
     fetchMock.mockReturnValue(Promise.resolve({
       status: 200,
-      json: () => Promise.resolve({ pokemon, description: "test" }),
+      json: () => Promise.resolve({ name: pokemon, description: "test" }),
     }));
 
-    let pokemon = 'pikachu';
     act(() => {
       render(
         <Search addFavourite={noop} />
@@ -73,12 +73,12 @@ describe('Search', () => {
   });
 
   it('renders the result', async () => {
+    let pokemon = 'pikachu';
     fetchMock.mockReturnValue(Promise.resolve({
       status: 200,
-      json: () => Promise.resolve({ pokemon, description: "test" }),
+      json: () => Promise.resolve({ name: pokemon, description: "test" }),
     }));
 
-    let pokemon = 'pikachu';
     act(() => {
       render(
         <Search addFavourite={noop} />
@@ -163,12 +163,12 @@ describe('Search', () => {
 
   it('allows to save a pokemon to favourites', async () => {
     let handler = jest.fn();
+    let pokemon = 'pikachu';
     fetchMock.mockReturnValue(Promise.resolve({
       status: 200,
-      json: () => Promise.resolve({ pokemon, description: 'test' }),
+      json: () => Promise.resolve({ name: pokemon, description: 'test' }),
     }));
 
-    let pokemon = 'pikachu';
     act(() => {
       render(
         <Search addFavourite={handler} />
@@ -186,6 +186,6 @@ describe('Search', () => {
     });
         
     expect(handler.mock.calls).toHaveLength(1);
-    expect(handler).toHaveBeenCalledWith({pokemon, description: 'test'})
+    expect(handler).toHaveBeenCalledWith({name: pokemon, description: 'test'})
   });
 });

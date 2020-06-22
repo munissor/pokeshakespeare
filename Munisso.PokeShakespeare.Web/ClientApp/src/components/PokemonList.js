@@ -9,9 +9,9 @@ class PokemonList extends Component {
   render () {
     return (this.props.pokemons || []).map(p => {
         return (
-            <Card data-test-id={"fav-" + p.pokemon} key={p.pokemon}>
+            <Card data-test-id={"fav-" + p.name} key={p.name}>
                 <Pokemon pokemon={p} />
-                <button onClick={() => this.props.removeFavourite(p.pokemon)}>
+                <button onClick={() => this.props.removeFavourite(p.name)}>
                     Remove
                 </button>
             </Card>
@@ -22,7 +22,7 @@ class PokemonList extends Component {
 
 PokemonList.propTypes = {
   pokemons: PropTypes.arrayOf(PropTypes.shape({
-    pokemon: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired
   })).isRequired,
   removeFavourite: PropTypes.func.isRequired,

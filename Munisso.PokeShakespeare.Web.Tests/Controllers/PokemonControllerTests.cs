@@ -40,7 +40,7 @@ namespace Munisso.PokeShakespeare.Controllers
             var response = (OkObjectResult)await this.pokemonController.Get(pokemon);
             this.pokeShakespeareServiceMock.Verify(m => m.GetPokemonDescription(It.IsAny<string>()), Times.Once);
             var value = (ShakespeareDescription)response.Value;
-            Assert.AreEqual(pokemon, value.Pokemon);
+            Assert.AreEqual(pokemon, value.Name);
             Assert.AreEqual(description, value.Description);
         }
 

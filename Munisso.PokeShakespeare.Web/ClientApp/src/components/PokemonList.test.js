@@ -21,11 +21,11 @@ afterEach(() => {
 describe('PokemonList', () => {
   it('renders many pokemons', async () => {
     let data = [{
-      pokemon: 'pikachu',
+      name: 'pikachu',
       description: 'pikachu description'
     },
     {
-      pokemon: 'bulbasaur',
+      name: 'bulbasaur',
       description: 'bulbasaur description'
     }];
 
@@ -39,7 +39,7 @@ describe('PokemonList', () => {
     let contents = container.querySelectorAll('.card');
     expect(contents.length).toBe(data.length);
     data.forEach((p, i) => {
-      expect(contents[i].querySelector('h2').textContent).toBe(p.pokemon);
+      expect(contents[i].querySelector('h2').textContent).toBe(p.name);
     });
   });
 
@@ -59,7 +59,7 @@ describe('PokemonList', () => {
 
   it('calls the removeHandler correctly', async () => {
     let data = [{
-      pokemon: 'pikachu',
+      name: 'pikachu',
       description: 'pikachu description'
     }];
     let handler = jest.fn();
@@ -73,6 +73,6 @@ describe('PokemonList', () => {
     });
       
     expect(handler.mock.calls.length).toBe(1);
-    expect(handler).toHaveBeenCalledWith(data[0].pokemon);
+    expect(handler).toHaveBeenCalledWith(data[0].name);
   });
 });

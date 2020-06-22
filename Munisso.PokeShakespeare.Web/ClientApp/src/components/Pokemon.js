@@ -6,7 +6,7 @@ class Pokemon extends Component {
   render () {
     return (
         <div>
-            <h2>{this.props.pokemon.pokemon}</h2>
+            <h2>{this.props.pokemon.name}</h2>
             <p>{this.props.pokemon.description}</p>
         </div>
     );
@@ -15,7 +15,7 @@ class Pokemon extends Component {
 
 Pokemon.propTypes = {
   pokemon: PropTypes.shape({
-    pokemon: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired
   }).isRequired,
 };

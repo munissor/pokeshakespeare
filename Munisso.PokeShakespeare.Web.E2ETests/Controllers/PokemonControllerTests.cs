@@ -30,7 +30,7 @@ namespace Munisso.PokeShakespeare.E2ETests
                 var response = await client.GetAsync(url);
                 var content = await response.Content.ReadAsStringAsync();
                 var data = JsonSerializer.Deserialize<ShakespeareDescription>(content);
-                Assert.AreEqual(pokemon, data.Pokemon);
+                Assert.AreEqual(pokemon, data.Name);
                 Assert.AreEqual("At which hour several of these pokémon gather,  their electricity couldst buildeth and cause lightning storms.", data.Description);
             }
         }
