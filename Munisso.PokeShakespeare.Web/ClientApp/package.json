@@ -18,15 +18,17 @@
         "rimraf": "^2.6.2"
     },
     "devDependencies": {
+        "@testing-library/react": "^10.3.0",
         "ajv": "^6.9.1",
         "cross-env": "^5.2.0",
-        "typescript": "^3.7.5",
+        "cypress": "^4.8.0",
         "eslint": "^6.8.0",
         "eslint-config-react-app": "^5.2.0",
         "eslint-plugin-flowtype": "^4.6.0",
         "eslint-plugin-import": "^2.20.1",
         "eslint-plugin-jsx-a11y": "^6.2.3",
-        "eslint-plugin-react": "^7.18.3"
+        "eslint-plugin-react": "^7.18.3",
+        "typescript": "^3.7.5"
     },
     "eslintConfig": {
         "extends": "react-app"
@@ -34,8 +36,11 @@
     "scripts": {
         "start": "rimraf ./build && react-scripts start",
         "build": "react-scripts build",
+        "unit-tests": "jest",
         "test": "cross-env CI=true react-scripts test --env=jsdom",
         "eject": "react-scripts eject",
+        "cypress": "cypress open",
+        "e2e-tests": "cypress run --headless --browser electron",
         "lint": "eslint ./src/"
     },
     "browserslist": {

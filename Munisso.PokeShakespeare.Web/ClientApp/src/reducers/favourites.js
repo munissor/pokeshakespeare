@@ -1,6 +1,4 @@
-const x = [];
-
-const favourites = (state = x, action) => {
+const favourites = (state = [], action) => {
     switch (action.type) {
         case 'ADD_FAVOURITE':
             if (!state.find( (i) => i.pokemon === action.pokemon.pokemon )){
