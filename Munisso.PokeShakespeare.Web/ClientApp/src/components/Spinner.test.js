@@ -17,11 +17,13 @@ afterEach(() => {
   container = null;
 });
 
-it('renders without crashing', async () => {
-  act(() => {
-    render(
-      <Spinner>
-      </Spinner>, container);
-    });
-  expect(container.querySelector('.pokeball')).not.toBeNull();
+describe('Spinner', () => {
+  it('renders the pokeball', async () => {
+    act(() => {
+      render(
+        <Spinner>
+        </Spinner>, container);
+      });
+    expect(container.querySelector('.pokeball')).not.toBeNull();
+  });  
 });

@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { render, unmountComponentAtNode } from "react-dom";
-import { act } from "react-dom/test-utils";
+import { render, unmountComponentAtNode } from 'react-dom';
+import { act } from 'react-dom/test-utils';
 import { Card } from './Card';
 
 let container;
 beforeEach(() => {
   // setup a DOM element as a render target
-  container = document.createElement("div");
+  container = document.createElement('div');
   document.body.appendChild(container);
 });
 
@@ -23,10 +23,10 @@ describe('Card', () => {
     act(() => {
       render(
         <Card>
-          <div className="content" />
+          <div className='content' />
         </Card>, container);
       });
-    expect(container.querySelector(".card .content")).not.toBeNull();
+    expect(container.querySelector('.card .content')).not.toBeNull();
   });
 });
 

@@ -2,6 +2,7 @@
 import reducer from './favourites';
 
 describe('Favourites reducer', () => {
+    
     it('should return the initial state', () => {
       let fav = reducer(undefined, {});
       expect(fav).toEqual([]);

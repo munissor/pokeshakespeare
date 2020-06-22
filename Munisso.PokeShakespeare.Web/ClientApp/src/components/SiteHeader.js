@@ -9,8 +9,8 @@ export class SiteHeader extends Component {
         <div className="header_content">
           <h1>PokeShakespeare</h1>
           <ul className="navigation">
-            <li><Link to="/">Search</Link></li>
-            <li><Link to="/favourites">Favourites</Link></li>
+            <li><Link data-test-id="nav-search" to="/">Search</Link></li>
+            <li><Link data-test-id="nav-fav" to="/favourites">Favourites</Link></li>
           </ul>
         </div>
       </header>

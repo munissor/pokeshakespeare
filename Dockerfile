@@ -8,7 +8,7 @@ FROM node:12.18.1-buster as buildfrontend
 
 WORKDIR /opt/pokeshakespeare
 ADD ./Munisso.PokeShakespeare.Web/ClientApp /opt/pokeshakespeare
-RUN npm i --arch=x64 --platform=linuxmusl
+RUN npm i --only=prod --arch=x64 --platform=linuxmusl
 RUN npm run build
 
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-alpine

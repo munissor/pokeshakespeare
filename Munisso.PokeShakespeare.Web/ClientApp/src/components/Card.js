@@ -5,8 +5,9 @@ import './Card.css';
 class Card extends Component {
 
     render() {
+        var testid = this.props['data-test-id'];
         return (
-            <div className="card">
+            <div className="card" data-test-id={testid}>
                 {this.props.children}
             </div>
         );

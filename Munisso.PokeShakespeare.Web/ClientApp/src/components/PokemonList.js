@@ -9,7 +9,7 @@ class PokemonList extends Component {
   render () {
     return (this.props.pokemons || []).map(p => {
         return (
-            <Card key={p.pokemon}>
+            <Card data-test-id={"fav-" + p.pokemon} key={p.pokemon}>
                 <Pokemon pokemon={p} />
                 <button onClick={() => this.props.removeFavourite(p.pokemon)}>
                     Remove

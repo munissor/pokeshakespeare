@@ -1,8 +1,9 @@
-using NUnit.Framework;
+using System;
 using System.Net;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
+using NUnit.Framework;
 using Munisso.PokeShakespeare.Models;
 
 namespace Munisso.PokeShakespeare.E2ETests
@@ -10,11 +11,13 @@ namespace Munisso.PokeShakespeare.E2ETests
     [TestFixture]
     public class PokemonControllerTests
     {
-        const string ENDPOINT = "http://localhost:5000/pokemon";
+        string ENDPOINT;
 
         [SetUp]
         public void Setup()
         {
+            var testHost = Environment.GetEnvironmentVariable("TEST_HOST") ?? "localhost:5000";
+            ENDPOINT = $"http://{testHost}/pokemon";
         }
 
         [Test]

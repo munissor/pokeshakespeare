@@ -6,6 +6,12 @@ import {Pokemon} from './Pokemon';
 
 class Search extends Component {
   static displayName = Search.name;
+  static MESSAGES = {
+    NotFound: "That pokemon doesn't exist!",
+    ServerError: "There was a problem with your search, please retry",
+    EmptyQuery: "Enter a Pokemon name and search again",
+    ConnectionFailure: "Unable to reach the server, is your connection working?",
+  };
 
   constructor() {
     super();
@@ -27,24 +33,32 @@ class Search extends Component {
   }
   
   async handleSearch(event) {
+    let error = null;
+    let pokemon = null;
     event.preventDefault();
     if(this.state.query) {
-      this.setState({ loading: true, pokemon: null, error: null });
-      const response = await fetch(`/pokemon/${this.state.query}`);
-      let error = null;
-      let pokemon = null;
-      if ( response.status === 200 ) {
-        pokemon = await response.json();
+      try {
+        this.setState({ loading: true, pokemon: null, error: null });
+        const response = await fetch(`/pokemon/${this.state.query}`);
+        if ( response.status === 200 ) {
+          pokemon = await response.json();
+        }
+        else if( response.status === 404 ) {
+          error = Search.MESSAGES.NotFound;
+        }
+        else {
+          error = Search.MESSAGES.ServerError;
+        }
       }
-      else if( response.status === 404 ) {
-        error = "That pokemon doesn't exist!";
+      catch {
+        // a fetch promise throws if the connection cannot be made
+        error = Search.MESSAGES.ConnectionFailure;
       }
-      else {
-        error = "There was a problem with your search, please retry";
-      }
-
-      this.setState({ loading: false, error, pokemon });
     }
+    else {
+      error = Search.MESSAGES.EmptyQuery;
+    }
+    this.setState({ loading: false, error, pokemon });
   }
 
   renderSpinner() {

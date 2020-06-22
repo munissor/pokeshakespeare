@@ -69,6 +69,7 @@ describe('Search', () => {
     });
         
     expect(fetchMock).not.toHaveBeenCalled();
+    expect(container.querySelector('.error').textContent).toMatch(Search.MESSAGES.EmptyQuery);
   });
 
   it('renders the result', async () => {
@@ -114,10 +115,10 @@ describe('Search', () => {
     });
         
     expect(container.querySelector('h2')).toBeNull();
-    expect(container.querySelector('.error').textContent).toMatch('That pokemon doesn\'t exist!');
+    expect(container.querySelector('.error').textContent).toMatch(Search.MESSAGES.NotFound);
   });
 
-  it('renders the not API failure error', async () => {
+  it('renders the API failure error', async () => {
     fetchMock.mockReturnValue(Promise.resolve({
       status: 500,
     }));
@@ -136,7 +137,28 @@ describe('Search', () => {
     });
         
     expect(container.querySelector('h2')).toBeNull();
-    expect(container.querySelector('.error').textContent).toMatch('There was a problem with your search, please retry');
+    expect(container.querySelector('.error').textContent).toMatch(Search.MESSAGES.ServerError);
+  });
+
+
+  it('renders an error if fetch fails', async () => {
+    fetchMock.mockReturnValue(Promise.reject({}));
+
+    let pokemon = 'pikachu';
+    act(() => {
+      render(
+        <Search addFavourite={noop} />
+        , container);
+      let textbox = container.querySelector('input[type="text"]');
+      fireEvent.change(textbox, { target: { value: pokemon } })
+    });
+
+    await act(async () => {
+      fireEvent.click(container.querySelector('input[type="submit"]'));
+    });
+        
+    expect(container.querySelector('h2')).toBeNull();
+    expect(container.querySelector('.error').textContent).toMatch(Search.MESSAGES.ConnectionFailure);
   });
 
   it('allows to save a pokemon to favourites', async () => {
@@ -162,8 +184,6 @@ describe('Search', () => {
     act(() => {
       fireEvent.click(container.querySelector('.addFav'));
     });
-    
-    
         
     expect(handler.mock.calls).toHaveLength(1);
     expect(handler).toHaveBeenCalledWith({pokemon, description: 'test'})
