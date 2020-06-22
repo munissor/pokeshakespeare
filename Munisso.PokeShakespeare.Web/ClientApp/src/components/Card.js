@@ -4,7 +4,7 @@ import './Card.css';
 export class Card extends Component {
 
     render() {
-        return ( 
+        return (
             <div className="card">
                 {this.props.children}
             </div>
