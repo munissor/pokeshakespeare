@@ -1,10 +1,10 @@
 #!/bin/sh
-DOTNET_CLI_HOME="/tmp/dotnet"
-DOTNET_CLI_TELEMETRY_OPTOUT="true"
+export HOME=/tmp
+DOTNET_CLI_TELEMETRY_OPTOUT=true
 
 dotnet tool install -g dotnet-reportgenerator-globaltool
 
-export PATH="$PATH:/root/.dotnet/tools"
+export PATH="$PATH:/tmp/.dotnet/tools"
 
 dotnet build
 
