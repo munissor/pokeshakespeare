@@ -27,7 +27,7 @@ The frontend code lives in `Munisso.PokeShakespeare.Web/ClientApp/src`. Each com
 The solution file provided has not been tested using Visual Studio, it should work but is not guaranteed.
 The application and tests have been dockerized to require minimal setup to run, and maximum platform compatibility.
 
-### Linux and MacOS
+### Linux and MacOS (Recommended)
 
 Requires `make` and `docker` running on the client machine. The port 5000 needs to be available on the host machine.
 

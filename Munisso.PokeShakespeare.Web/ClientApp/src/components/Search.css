@@ -1,0 +1,11 @@
+input[type="text"].search {
+    width: 60%;
+}
+
+input[type="submit"].search {
+    margin-left: 5px;
+}
+
+form {
+    margin-bottom: 10px;
+}

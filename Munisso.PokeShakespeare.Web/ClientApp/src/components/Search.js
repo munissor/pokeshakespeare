@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {Card} from './Card';
 import {Spinner} from './Spinner';
 import {Pokemon} from './Pokemon';
+import './Search.css';
 
 class Search extends Component {
   static displayName = Search.name;
@@ -96,10 +97,11 @@ class Search extends Component {
         <form onSubmit={this.handleSearch}>
           <label htmlFor="query">Pokemon</label>
           <input name="query" 
+            className="search"
             type="text" 
             value={this.state.query}
             onChange={this.handleQueryChange}></input>
-          <input type="submit" value="Search" />
+          <input className="search" type="submit" value="Search" />
         </form>
         {this.renderSpinner()}
         {this.renderPokemon()}
