@@ -1,7 +1,8 @@
 E2E_NETWORK=pokeshakespeare_e2e_net
 E2E_HOST=pokeshakespeare_e2e
 DNS=1.1.1.1
-ENV_DUMMY=--env USE_DUMMY_TRANSLATIONS=true
+#ENV_DUMMY=--env USE_DUMMY_TRANSLATIONS=true
+ENV_DUMMY=
 
 clean:
 	sudo rm -rf ./Munisso.PokeShakespeare.Web/obj

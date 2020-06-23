@@ -2,6 +2,7 @@ bin/
 obj/
 node_modules/
 test-reports/
-cypress/videos/
+**/cypress/videos/
+**/cypress/screenshots/
 lcov.info
 tmp/
