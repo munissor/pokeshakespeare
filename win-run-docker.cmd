@@ -1,0 +1,1 @@
+docker run --rm --dns 1.1.1.1 -p 5000:80 pokeshakespeare:latest
