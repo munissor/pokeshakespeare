@@ -1,6 +1,6 @@
 # PokeShakespeare
 
-A search engine to show the Shakespearean description for pokemons
+A search engine to show the Shakespearean description for Pokemons
 
 ## Code structure
 
